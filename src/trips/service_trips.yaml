@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: trips-subdomain
+spec:
+  selector:
+    app: trips
+  ports:
+    - name: trips-ports # Actually, no port is needed.
+      port: 80
+      targetPort: 8080
