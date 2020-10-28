@@ -32,7 +32,5 @@ spec:
               value: sqlserverlzk2091.database.windows.net
             - name: SQL_DBNAME
               value: mydrivingDB
-            - name:
-              value: mydrivingDB
 
 
