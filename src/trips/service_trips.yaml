@@ -1,11 +1,15 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: trips-subdomain
+  namespace: api
+  labels:
+    app: trips-deployment
 spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
   selector:
     app: trips
-  ports:
-    - name: trips-ports # Actually, no port is needed.
-      port: 80
-      targetPort: 8080
+  type: ClusterIP
