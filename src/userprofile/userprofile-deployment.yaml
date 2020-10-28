@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: userprofile-deployment
+  namespace: api
   labels:
     app: userprofile-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: userprofile
@@ -18,7 +19,7 @@ spec:
         - name: userprofile
           image: registrylzk2091.azurecr.io/userprofile:1.0
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
             - name: SQL_USER
               value: sqladminlZk2091

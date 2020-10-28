@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: userprofile-subdomain
   namespace: api
+  labels:
+    app: userprofile-deployment
 spec:
   ports:
     - protocol: TCP
