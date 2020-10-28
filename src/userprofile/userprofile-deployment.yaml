@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userprofile-deployment
+  labels:
+    app: userprofile-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: userprofile
+  template:
+    metadata:
+      labels:
+        app: userprofile
+    spec:
+      containers:
+        - name: userprofile
+          image: registrylzk2091.azurecr.io/userprofile:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SQL_USER
+              value: sqladminlZk2091
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-password-secret
+                  key: password
+            - name: SQL_SERVER
+              value: sqlserverlzk2091.database.windows.net
+            - name: SQL_DBNAME
+              value: mydrivingDB
