@@ -4,7 +4,7 @@ metadata:
   name: web-full-access
   namespace: web
 rules:
-  - apiGroups: ["", "extensions", "apps"]
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
 
@@ -15,7 +15,7 @@ metadata:
   name: api-view-access
   namespace: web
 rules:
-  - apiGroups: ["", "extensions", "apps"]
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["get", "watch", "list"]
 
@@ -26,7 +26,7 @@ metadata:
   name: api-full-access
   namespace: api
 rules:
-  - apiGroups: ["", "extensions", "apps"]
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
 
@@ -37,7 +37,7 @@ metadata:
   name: web-view-access
   namespace: api
 rules:
-  - apiGroups: ["", "extensions", "apps"]
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["get", "watch", "list"]
 
