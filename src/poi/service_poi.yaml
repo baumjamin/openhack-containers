@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: poi-subdomain
+  namespace: api
+  labels:
+    app: poi-deployment
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: poi
+  type: ClusterIP

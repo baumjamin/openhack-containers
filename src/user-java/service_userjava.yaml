@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: user-java-subdomain
+  namespace: api
+  labels:
+    app: user-java-deployment
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: user-java
+  type: ClusterIP
