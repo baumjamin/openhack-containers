@@ -18,6 +18,10 @@ spec:
       containers:
         - name: poi
           image: registrylzk2091.azurecr.io/poi:1.0
+          volumeMounts:
+            - name: secret-vl
+              mountPath: /kvmnt
+              readOnly: true
           ports:
             - containerPort: 8080
           env:
@@ -34,3 +38,22 @@ spec:
               value: sqlserverlzk2091.database.windows.net
             - name: SQL_DBNAME
               value: mydrivingDB
+      volumes:
+        - name: secret-vl
+          flexVolume:
+            driver: "azure/kv"
+            secretRef:
+              name: keyTeam2                             # [OPTIONAL] not required if using Pod Identity
+            options:
+#              usepodidentity: "false"                   # [OPTIONAL] if not provided, will default to "false"
+#              usevmmanagedidentity: "false"             # [OPTIONAL new in version >= v0.0.15] if not provided, will default to "false"
+#              vmmanagedidentityclientid: "clientid"     # [OPTIONAL new in version >= v0.0.15] use the client id to specify which user assigned managed identity to use, leave empty to use system assigned managed identity
+              keyvaultname: "keyTeam2"              # [REQUIRED] the name of the KeyVault
+              keyvaultobjectnames: "password"         # [REQUIRED] list of KeyVault object names (semi-colon separated)
+#              keyvaultobjectaliases: "secret.json"      # [OPTIONAL] list of KeyVault object aliases
+              keyvaultobjecttypes: secret               # [REQUIRED] list of KeyVault object types: secret, key, cert (semi-colon separated)
+#              keyvaultobjectversions: "testversion"     # [OPTIONAL] list of KeyVault object versions (semi-colon separated), will get latest if empty
+              resourcegroup: "teamResources"        # [REQUIRED for version < v0.0.14] the resource group of the KeyVault
+              subscriptionid: "19828a53-9e4d-43c0-921b-3e5b68c750c9"                 # [REQUIRED for version < v0.0.14] the subscription ID of the KeyVault
+              tenantid: "1fa33f97-2a96-404d-a24c-d4b60e8629dd"                    # [REQUIRED] the tenant ID of the KeyVault
+#              nmiport: "nmiportnumber"                  # [OPTIONAL new in version >= v0.0.17] port number of the NMI daemonset, will default to "2579"
