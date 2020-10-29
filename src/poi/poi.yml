@@ -48,7 +48,7 @@ spec:
 #              usepodidentity: "false"                   # [OPTIONAL] if not provided, will default to "false"
 #              usevmmanagedidentity: "false"             # [OPTIONAL new in version >= v0.0.15] if not provided, will default to "false"
 #              vmmanagedidentityclientid: "clientid"     # [OPTIONAL new in version >= v0.0.15] use the client id to specify which user assigned managed identity to use, leave empty to use system assigned managed identity
-              keyvaultname: "keyTeams"              # [REQUIRED] the name of the KeyVault
+              keyvaultname: "keyTeam2"              # [REQUIRED] the name of the KeyVault
               keyvaultobjectnames: "password"         # [REQUIRED] list of KeyVault object names (semi-colon separated)
 #              keyvaultobjectaliases: "secret.json"      # [OPTIONAL] list of KeyVault object aliases
               keyvaultobjecttypes: secret               # [REQUIRED] list of KeyVault object types: secret, key, cert (semi-colon separated)
