@@ -4,9 +4,20 @@ metadata:
   name: web-full-access
   namespace: web
 rules:
-  - apiGroups: ["", "extensions", "apps"]
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-view-access
+  namespace: web
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["get", "watch", "list"]
 
 ---
 kind: Role
@@ -15,7 +26,18 @@ metadata:
   name: api-full-access
   namespace: api
 rules:
-  - apiGroups: ["", "extensions", "apps"]
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-view-access
+  namespace: api
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["get", "watch", "list"]
 
