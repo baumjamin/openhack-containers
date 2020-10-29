@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: tripviewer-subdomain
-  namespace: api
+  namespace: web
   labels:
     app: tripviewer-deployment
 spec:
